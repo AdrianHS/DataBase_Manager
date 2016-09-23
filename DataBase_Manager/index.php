@@ -11,7 +11,16 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        //= put your code here
+            $serverName = "Andrew"; //serverName\instanceName
+            $connectionInfo = array( "Database"=>"redTEC", "UID"=>"sa", "PWD"=>"1234");
+            $conn = sqlsrv_connect( $serverName, $connectionInfo);
+
+            if( $conn ) {
+                 echo "Conexion establecida.<br />";
+            }else{
+                 echo "Conexión no se pudo establecer.<br />";
+                 die( print_r( sqlsrv_errors(), true));
+            }
         ?>
     </body>
 </html>
