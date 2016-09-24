@@ -1,0 +1,90 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23/09/2016, 04:12:17 PM
+    Author     : __ADRIAN__
+*/
+
+/*fondos de todas las pantallas*/
+body{
+    background-image: url("../css/images/fondo1.png");
+    
+}
+/*para darle formato al login*/
+.login{
+    padding-top: 20px;
+    width: 400px;
+    height: 450px;
+    text-align: right;
+    background-color: rgba(24, 35, 37, 0.4);
+    color: rgba(255, 255, 220, 1);
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+/*para darle formato a los inputs del login*/
+.login input{
+    
+    margin: 30px;
+    text-align: center;
+    width: 200px;
+    height: 35px;
+    border-radius: 4px;
+    margin-top: 10px;
+    background-color: #fff
+}
+/*para darle colores al boton del login*/
+.botonLogin input{
+    background-color: rgba(24, 35, 42, 0.7);
+    color: rgba(255, 255, 220, 1);
+}
+/*para darle formato al header del la pagina principal*/
+.principalhea{
+    padding: 20px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    width: 1275px;
+    height: 50px;
+    text-align: center;
+    background-color: blue;
+    border-radius: 6px; 
+    color: white;
+}
+/*para darle formato al nav del la pagina principal*/
+.principalnav{
+    padding-top: 20px;
+    margin-left: 20px;
+    width: 200px;
+    height: 508px;
+    text-align: left;
+    background-color: rgba(24, 35, 37, 0.4);
+    color: rgba(255, 255, 220, 1);
+    border-radius: 10px;
+    float: left;
+}
+/*para darle formato a los botones del nav de la pagina principal*/
+.principalnav button{
+    
+    margin-left: -25px;
+    text-align: center;
+    width: 170px;
+    height: 35px;
+    border-radius: 4px;
+    margin-top: 10px;
+    background-color: #fff
+}
+/*para darle formato al article de la pagina principal*/
+.principalart{
+    padding-top: 20px;
+    margin-left: 3px;
+    width: 1110px;
+    height: 508px;
+    text-align: left;
+    background-color: rgba(87, 99, 43, 0.4);
+    color: rgba(255, 255, 220, 1);
+    border-radius: 10px;
+    float: left;
+}   

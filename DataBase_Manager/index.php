@@ -7,20 +7,26 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Login</title>
+        <link type="text/css" rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        
+        <form name="datos" method="get" action="Conexion.php" class="login">
+            <h2 style="text-align: center">Data Base Manager</h2>
+            Servidor:<input type="text"name="servidor"value="">
+            <br>
+            Data Base:<input type="text"name="dataBase"value="">
+            <br>
+            Usuario:<input type="text"name="usuario"value="">
+            <br>
+            Contraseña:<input type="text"name="contraseña"value="">
+            <nav class="botonLogin">
+                <input type="submit"/>
+            </nav>
+        </form>
         <?php
-            $serverName = "Andrew"; //serverName\instanceName
-            $connectionInfo = array( "Database"=>"redTEC", "UID"=>"sa", "PWD"=>"1234");
-            $conn = sqlsrv_connect( $serverName, $connectionInfo);
-
-            if( $conn ) {
-                 echo "Conexion establecida.<br />";
-            }else{
-                 echo "Conexión no se pudo establecer.<br />";
-                 die( print_r( sqlsrv_errors(), true));
-            }
+           
         ?>
     </body>
 </html>
