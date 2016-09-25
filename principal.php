@@ -5,6 +5,8 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
+    
+    
     <head>
         <meta charset="UTF-8">
         <title>Menú</title>
@@ -15,7 +17,7 @@ and open the template in the editor.
         <header class="principalhea">
             <h2>Data Base Manager</h2>
         </header>
-        <nav class="principalnav">
+        <nav class="principalnav"> 
             <ul>
                 <button type = "button"><a href=""> Ver tablas </a></button>
             </ul>

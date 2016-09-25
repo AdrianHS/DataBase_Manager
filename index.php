@@ -20,9 +20,9 @@ and open the template in the editor.
             <br>
             Usuario:<input type="text"name="usuario"value="">
             <br>
-            Contraseña:<input type="text"name="contraseña"value="">
+            Contraseña:<input type="password"name="contraseña"value="">
             <nav class="botonLogin">
-                <input type="submit"/>
+                <input type="submit" name="Login" value="Login"/>
             </nav>
         </form>
         <?php
