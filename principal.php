@@ -19,7 +19,7 @@ and open the template in the editor.
         </header>
         <nav class="principalnav"> 
             <ul>
-                <button type = "button"><a href=""> Ver tablas </a></button>
+                <button type = "button"><a href="M_Relacional.php"> Modelo Relacional </a></button>
             </ul>
             <ul>
             <button type = "button"><a href=""> Algo </a></button>

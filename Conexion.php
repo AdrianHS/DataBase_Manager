@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+function login (){
 $servidor = $_GET['servidor'];
 $dataBase =  $_GET['dataBase'];
 $usuario =  $_GET['usuario'];
@@ -22,9 +22,10 @@ $conn = sqlsrv_connect( $servidor,$connectionInfo);
 
 if( $conn ) {
     //llama a la pagina principal
-    include('principal.php');
+    return $conn;
 }
 else{
+    include('index.php');
     echo "Conexión no se pudo establecer.<br />";
     die( print_r( sqlsrv_errors(), true));
-}
+}}
