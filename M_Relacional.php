@@ -84,39 +84,7 @@
         )  // end Table Panel
       );  // end Node
     // define the Link template, representing a relationship
-    myDiagram.linkTemplate =
-      $(go.Link,  // the whole link panel
-        {
-          selectionAdorned: true,
-          layerName: "Foreground",
-          reshapable: true,
-          routing: go.Link.AvoidsNodes,
-          corner: 5,
-          curve: go.Link.JumpOver
-        },
-        $(go.Shape,  // the link shape
-          { stroke: "#303B45", strokeWidth: 2.5 }),
-        $(go.TextBlock,  // the "from" label
-          {
-            textAlign: "center",
-            font: "bold 14px sans-serif",
-            stroke: "#1967B3",
-            segmentIndex: 0,
-            segmentOffset: new go.Point(NaN, NaN),
-            segmentOrientation: go.Link.OrientUpright
-          },
-          new go.Binding("text", "text")),
-        $(go.TextBlock,  // the "to" label
-          {
-            textAlign: "center",
-            font: "bold 14px sans-serif",
-            stroke: "#1967B3",
-            segmentIndex: -1,
-            segmentOffset: new go.Point(NaN, NaN),
-            segmentOrientation: go.Link.OrientUpright
-          },
-          new go.Binding("text", "toText"))
-      );
+    
     // create the model for the E-R diagram
     /*var nodeDataArray = [
       { key: "Products",
@@ -149,7 +117,7 @@
     myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);*/
         
     <?php
-        $serverName = "ANDRES"; //serverName\instanceName
+        $serverName = "."; //serverName\instanceName
         $connectionInfo = array( "Database"=>"redTEC", "UID"=>"sa", "PWD"=>"vacaslocas1");
         $conn = sqlsrv_connect( $serverName, $connectionInfo);
         if( $conn ) {
@@ -198,7 +166,7 @@
                 comp = listaConsulta[j].Tabla;
                 break;   
             }
-        var item = { name: listaConsulta[j].Atributo,name2:listaConsulta[j].Tipo, iskey: true, figure: "Decision", color: yellowgrad };
+        var item = { name: listaConsulta[j].Atributo+ "\t\t "+listaConsulta[j].Tipo, iskey: true, figure: "Decision", color: yellowgrad };
         dicc.items.push(item);
         i++;
         j++;
@@ -212,7 +180,7 @@
 
     while (h < tam2){
         console.log("entre");
-        var dicc2 = { from: listaConsulta2[h].Referencia, to:listaConsulta2[h].Tabla, text: "0..N", toText: "1" };
+        var dicc2 = { from: listaConsulta2[h].Tabla, to:listaConsulta2[h].Referencia, text: "0..N", toText: "1" };
         linkDataArray.push(dicc2);
         h+=1;
     }  
