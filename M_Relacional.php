@@ -37,7 +37,10 @@
           { stroke: "#333333",
             font: "bold 14px sans-serif" },
           new go.Binding("text", "name"))
+    
+                  
       );
+      
     // define the Node template, representing an entity
     myDiagram.nodeTemplate =
       $(go.Node, "Auto",  // the whole node panel
@@ -195,7 +198,7 @@
                 comp = listaConsulta[j].Tabla;
                 break;   
             }
-        var item = { name: listaConsulta[j].Atributo, iskey: true, figure: "Decision", color: yellowgrad };
+        var item = { name: listaConsulta[j].Atributo,name2:listaConsulta[j].Tipo, iskey: true, figure: "Decision", color: yellowgrad };
         dicc.items.push(item);
         i++;
         j++;
@@ -204,24 +207,25 @@
     }  
     var listaConsulta2 = <?php echo json_encode($list2);?>;
     var linkDataArray = [];
-    var tam2 = listaConsulta2.length -1;
+    var tam2 = listaConsulta2.length ;
     var h =0;
 
     while (h < tam2){
-        var dicc2 = { from: listaConsulta2[h].Tabla, to:listaConsulta2[h].Referencia, text: "0..N", toText: "1" };
-       linkDataArray.push(dicc2);
-       h++;
+        console.log("entre");
+        var dicc2 = { from: listaConsulta2[h].Referencia, to:listaConsulta2[h].Tabla, text: "0..N", toText: "1" };
+        linkDataArray.push(dicc2);
+        h+=1;
     }  
-    
     myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+    console.log(linkDataArray);
     
   }
 </script>
 </head>
 <body onload="init()">
 <div id="sample">
-  <h3>GoJS Entity Relationship</h3>
-  <div id="myDiagramDiv" style="background-color: white; border: solid 1px black; width: 100%; height: 700px"></div>
+  <h3>Modelo Relacional</h3>
+  <div id="myDiagramDiv" style="background-color: gray; border: solid 1px black; width: 100%; height: 700px"></div>
  
 </div>
 </body>

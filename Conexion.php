@@ -10,10 +10,7 @@ $servidor = $_GET['servidor'];
 $dataBase =  $_GET['dataBase'];
 $usuario =  $_GET['usuario'];
 $contraseña =  $_GET['contraseña'];
-#$servidor = 'DESKTOP-Q5KK7KC';
-#$dataBase =  'redTEC';
-#$usuario =  'sa';
-#$contraseña =  '1234';
+
 
 $connectionInfo = array( "Database"=>$dataBase, "UID"=>$usuario, "PWD"=>$contraseña);
 $conn = sqlsrv_connect( $servidor,$connectionInfo);
