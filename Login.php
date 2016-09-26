@@ -1,6 +1,11 @@
 <?php
 include 'conexion.php';
-$conn = login();
+
+$v1 = $_POST['servidor'];
+$v2 = $_POST['dataBase'];
+$v3 = $_POST['usuario'];
+$v4 = $_POST['contraseña'];
+
 include('principal.php');
 
 

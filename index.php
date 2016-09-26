@@ -12,7 +12,7 @@ and open the template in the editor.
     </head>
     <body>
         
-        <form name="datos" method="get" action="Login.php" class="login">
+        <form name="datos" method="get" method="post" action="Login.php" class="login">
             <h2 style="text-align: center">Data Base Manager</h2>
             Servidor:<input type="text"name="servidor"value="">
             <br>
