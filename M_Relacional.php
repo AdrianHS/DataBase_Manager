@@ -6,9 +6,12 @@
 <!-- Copyright 1998-2016 by Northwoods Software Corporation. -->
 <meta charset="UTF-8">
 <script src="go.js"></script>
+<?php
+    session_start();
 
+?>
 <script id="code">
-  function init() {
+function init() {
     if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
     var $ = go.GraphObject.make;  // for conciseness in defining templates
     myDiagram =
@@ -117,8 +120,13 @@
     myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);*/
         
     <?php
-        $serverName = "."; //serverName\instanceName
-        $connectionInfo = array( "Database"=>"redTEC", "UID"=>"sa", "PWD"=>"vacaslocas1");
+        
+       
+
+
+         
+        $serverName = $_SESSION['servidor']; //serverName\instanceName
+        $connectionInfo = array( "Database"=>$_SESSION['dataBase'], "UID"=>$_SESSION['usuario'], "PWD"=>$_SESSION['contraseña']);
         $conn = sqlsrv_connect( $serverName, $connectionInfo);
         if( $conn ) {
         }else{
@@ -187,7 +195,7 @@
     myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
     console.log(linkDataArray);
     
-  }
+}
 </script>
 </head>
 <body onload="init()">
