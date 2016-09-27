@@ -3,8 +3,10 @@
 <html>
 <head>
 <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<a href="principal.php"><button type = "button"> Atras </button></a>
+<link type="text/css" rel="stylesheet" href="css/style.css">
+
 <script>
+     
     <?php
     session_start();
     $serverName = $_SESSION['servidor']; //serverName\instanceName
@@ -26,9 +28,12 @@
            $list[]=$objeto;
     }   
     ?>
-    
+
     var listaConsulta = <?php echo json_encode($list);?>;
-    window.onload = function grafica () {
+   
+    
+    
+function grafica () {
         
    
 
@@ -60,6 +65,7 @@
 </script>
 </head>
 <body>
+
 <div id="chartContainer" style=" height: 300px; width: 40%;" ></div>
 </body>
 </html>

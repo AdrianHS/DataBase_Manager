@@ -88,39 +88,7 @@ function init() {
         )  // end Table Panel
       );  // end Node
     // define the Link template, representing a relationship
-    myDiagram.linkTemplate =
-      $(go.Link,  // the whole link panel
-        {
-          selectionAdorned: true,
-          layerName: "Foreground",
-          reshapable: true,
-          routing: go.Link.AvoidsNodes,
-          corner: 5,
-          curve: go.Link.JumpOver
-        },
-        $(go.Shape,  // the link shape
-          { stroke: "#303B45", strokeWidth: 2.5 }),
-        $(go.TextBlock,  // the "from" label
-          {
-            textAlign: "center",
-            font: "bold 14px sans-serif",
-            stroke: "#1967B3",
-            segmentIndex: 0,
-            segmentOffset: new go.Point(NaN, NaN),
-            segmentOrientation: go.Link.OrientUpright
-          },
-          new go.Binding("text", "text")),
-        $(go.TextBlock,  // the "to" label
-          {
-            textAlign: "center",
-            font: "bold 14px sans-serif",
-            stroke: "#1967B3",
-            segmentIndex: -1,
-            segmentOffset: new go.Point(NaN, NaN),
-            segmentOrientation: go.Link.OrientUpright
-          },
-          new go.Binding("text", "toText"))
-      );
+   
     // create the model for the E-R diagram
     /*var nodeDataArray = [
       { key: "Products",
