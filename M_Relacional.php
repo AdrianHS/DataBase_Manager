@@ -6,7 +6,8 @@
 <!-- Copyright 1998-2016 by Northwoods Software Corporation. -->
 <meta charset="UTF-8">
 <script src="go.js"></script>
-<a href="principal.php"><button type = "button"> Atras </button></a>
+<link type="text/css" rel="stylesheet" href="css/style.css">
+
 <?php
     session_start();
 
@@ -37,14 +38,13 @@ function init() {
           { desiredSize: new go.Size(10, 10) },
           new go.Binding("figure", "figure"),
           new go.Binding("fill", "color")),
-        $(go.TextBlock,
-          { stroke: "#333333",
-            font: "bold 14px sans-serif" },
-          new go.Binding("text", "name"))
-    
-                  
+                   $(go.TextBlock, new go.Binding("text", "name"),
+                { column: 0, margin: 9, font: "bold 10pt sans-serif" }),
+              $(go.TextBlock, new go.Binding("text", "type"),
+                { column: 1, margin: 9 }),
+              $(go.TextBlock, new go.Binding("text", "precision"),
+                { column: 2, margin: 9 })
       );
-      
     // define the Node template, representing an entity
     myDiagram.nodeTemplate =
       $(go.Node, "Auto",  // the whole node panel
@@ -174,7 +174,7 @@ function init() {
                 comp = listaConsulta[j].Tabla;
                 break;   
             }
-        var item = { name: listaConsulta[j].Atributo,name2:listaConsulta[j].Tipo, iskey: true, figure: "Decision", color: yellowgrad };
+        var item = { name: listaConsulta[j].Atributo,type:listaConsulta[j].Tipo, iskey: true, figure: "Decision", color: yellowgrad };
         dicc.items.push(item);
         i++;
         j++;
@@ -188,7 +188,7 @@ function init() {
 
     while (h < tam2){
         console.log("entre");
-        var dicc2 = { from: listaConsulta2[h].Referencia, to:listaConsulta2[h].Tabla, text: "0..N", toText: "1" };
+        var dicc2 = { from: listaConsulta2[h].Tabla, to:listaConsulta2[h].Referencia, text: "0..N", toText: "1" };
         linkDataArray.push(dicc2);
         h+=1;
     }  
@@ -200,8 +200,13 @@ function init() {
 </head>
 <body onload="init()">
 <div id="sample">
-  <h3>Modelo Relacional</h3>
-  <div id="myDiagramDiv" style="background-color: gray; border: solid 1px black; width: 100%; height: 700px"></div>
+  <div id="navegador">
+    <ul>
+    <li><a href="">Modelo Relacional</a></li>
+    <li><a href="principal.php">Atras</a></li>
+    </ul>
+</div>
+ <div id="myDiagramDiv" style="background-color: gray; border: solid 1px black; width: 100%; height: 700px"></div>
  
 </div>
 </body>

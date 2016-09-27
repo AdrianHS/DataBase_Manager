@@ -67,5 +67,6 @@ function grafica () {
 <body>
 
 <div id="chartContainer" style=" height: 300px; width: 40%;" ></div>
+
 </body>
 </html>
