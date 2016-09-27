@@ -206,7 +206,7 @@ function init() {
     <li><a href="principal.php">Atras</a></li>
     </ul>
 </div>
- <div id="myDiagramDiv" style="background-color: gray; border: solid 1px black; width: 100%; height: 700px"></div>
+ <div id="myDiagramDiv" style="background-color: rgba(0, 255, 255, 0.3); border: solid 1px black; width: 100%; height: 700px"></div>
  
 </div>
 </body>
