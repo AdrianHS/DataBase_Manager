@@ -89,36 +89,6 @@ function init() {
       );  // end Node
     // define the Link template, representing a relationship
    
-    // create the model for the E-R diagram
-    /*var nodeDataArray = [
-      { key: "Products",
-        items: [ { name: "ProductID", iskey: true, figure: "Decision", color: yellowgrad },
-                 { name: "ProductName", iskey: false, figure: "Cube1", color: bluegrad },
-                 { name: "SupplierID", iskey: false, figure: "Decision", color: "purple" },
-                 { name: "CategoryID", iskey: false, figure: "Decision", color: "purple" } ] },
-      { key: "Suppliers",
-        items: [ { name: "SupplierID", iskey: true, figure: "Decision", color: yellowgrad },
-                 { name: "CompanyName", iskey: false, figure: "Cube1", color: bluegrad },
-                 { name: "ContactName", iskey: false, figure: "Cube1", color: bluegrad },
-                 { name: "Address", iskey: false, figure: "Cube1", color: bluegrad } ] },
-      { key: "Categories",
-        items: [ { name: "CategoryID", iskey: true, figure: "Decision", color: yellowgrad },
-                 { name: "CategoryName", iskey: false, figure: "Cube1", color: bluegrad },
-                 { name: "Description", iskey: false, figure: "Cube1", color: bluegrad },
-                 { name: "Picture", iskey: false, figure: "TriangleUp", color: redgrad } ] },
-      { key: "Order Details",
-        items: [ { name: "OrderID", iskey: true, figure: "Decision", color: yellowgrad },
-                 { name: "ProductID", iskey: true, figure: "Decision", color: yellowgrad },
-                 { name: "UnitPrice", iskey: false, figure: "MagneticData", color: greengrad },
-                 { name: "Quantity", iskey: false, figure: "MagneticData", color: greengrad },
-                 { name: "Discount", iskey: false, figure: "MagneticData", color: greengrad } ] },
-    ];
-    var linkDataArray = [
-      { from: "Products", to: "Suppliers", text: "0..N", toText: "1" },
-      { from: "Products", to: "Categories", text: "0..N", toText: "1" },
-      { from: "Order Details", to: "Products", text: "0..N", toText: "1" }
-    ];
-    myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);*/
         
     <?php
 
@@ -133,7 +103,7 @@ function init() {
             die( print_r( sqlsrv_errors(), true));
         }
         
-        $query = "select Columna.TABLE_NAME as Tabla,columna.COLUMN_NAME as Atributo,Columna.DATA_TYPE as Tipo
+        $query = "select Columna.TABLE_NAME as Tabla,columna.COLUMN_NAME as Atributo,Columna.DATA_TYPE as Tipo, Columna.NUMERIC_PRECISION as pre
 	from INFORMATION_SCHEMA.TABLES Tablas inner join INFORMATION_SCHEMA.COLUMNS  Columna 
 	on Columna.TABLE_NAME = Tablas.TABLE_NAME";
         $result = sqlsrv_query($conn,$query );
@@ -220,7 +190,7 @@ function init() {
             }
             while(k<tam3){
                 if(listaPrimary[k].llavePrimaria===listaConsulta[j].Atributo && listaPrimary[k].nombreTabla===listaConsulta[j].Tabla){
-                    var item = { name: listaConsulta[j].Atributo,type:listaConsulta[j].Tipo, iskey: true, figure: "Decision", color: yellowgrad };
+                    var item = { name: listaConsulta[j].Atributo,type:listaConsulta[j].Tipo, iskey: true, figure: "Decision", color: yellowgrad, precision:listaConsulta[j].pre };
                     dicc.items.push(item);
                     k = tam3+1;
                 }
@@ -229,7 +199,7 @@ function init() {
             
             while(l<tam4){
                 if(listaForeing[l].llaveForanea===listaConsulta[j].Atributo && listaForeing[l].nombreTabla===listaConsulta[j].Tabla){
-                    var item = { name: listaConsulta[j].Atributo,type:listaConsulta[j].Tipo, iskey: true, figure: "TriangleUp", color: redgrad };
+                    var item = { name: listaConsulta[j].Atributo,type:listaConsulta[j].Tipo, iskey: true, figure: "TriangleUp", color: redgrad, precision:listaConsulta[j].pre };
                     dicc.items.push(item);
                     l = tam4+1;
                 }
@@ -239,7 +209,7 @@ function init() {
             
             
             if (k!==tam3+2 && l!==tam4+2){
-                var item = { name: listaConsulta[j].Atributo,type:listaConsulta[j].Tipo, iskey: false, figure: "MagneticData", color: bluegrad };
+                var item = { name: listaConsulta[j].Atributo,type:listaConsulta[j].Tipo, iskey: false, figure: "MagneticData", color: bluegrad, precision:listaConsulta[j].pre };
                 dicc.items.push(item);
             }
             i++;
@@ -254,7 +224,7 @@ function init() {
 
     while (h < tam2){
         console.log("entre");
-        var dicc2 = { from: listaConsulta2[h].Tabla, to:listaConsulta2[h].Referencia, text: "0..N", toText: "1" };
+        var dicc2 = { from: listaConsulta2[h].Tabla, to:listaConsulta2[h].Referencia };
         linkDataArray.push(dicc2);
         h+=1;
     }  
