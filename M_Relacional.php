@@ -6,6 +6,7 @@
 <!-- Copyright 1998-2016 by Northwoods Software Corporation. -->
 <meta charset="UTF-8">
 <script src="go.js"></script>
+<a href="principal.php"><button type = "button"> Atras </button></a>
 <?php
     session_start();
 

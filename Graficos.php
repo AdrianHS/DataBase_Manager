@@ -3,6 +3,7 @@
 <html>
 <head>
 <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<a href="principal.php"><button type = "button"> Atras </button></a>
 <script>
     <?php
     session_start();
