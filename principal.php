@@ -18,15 +18,14 @@ and open the template in the editor.
             <h2>Data Base Manager</h2>
         </header>
         <nav class="principalnav"> 
-            <ul>
-                <a href="M_Relacional.php"><button type = "button"> Modelo Relacional </button></a>
-            </ul>
-            <ul>
-                <a href="Graficos.php"><button type = "button"> Graficos </button></a>
-            </ul>
-            <ul>
-                <a href="index.php"><button type = "button"> Salir </button></a>
-            </ul>
+            <div id="navegador1">
+                <ul>
+                    <li><a href="M_Relacional.php">Modelo Relacional</a></li>
+                <li><a href="Graficos.php">Graficos</a></li>
+                <li><a href="index.php">Salir</a></li>
+                </ul>
+            </div>
+            
         </nav>
         <article class="principalart">
             
