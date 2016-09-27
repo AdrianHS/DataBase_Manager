@@ -6,12 +6,10 @@
 <!-- Copyright 1998-2016 by Northwoods Software Corporation. -->
 <meta charset="UTF-8">
 <script src="go.js"></script>
-<?php
-    session_start();
-
-?>
+<link href="../assets/css/goSamples.css" rel="stylesheet" type="text/css" />  <!-- you don't need to use this -->
+<script src="goSamples.js"></script>  <!-- this is only for the GoJS Samples framework -->
 <script id="code">
-function init() {
+  function init() {
     if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
     var $ = go.GraphObject.make;  // for conciseness in defining templates
     myDiagram =
@@ -40,10 +38,7 @@ function init() {
           { stroke: "#333333",
             font: "bold 14px sans-serif" },
           new go.Binding("text", "name"))
-    
-                  
       );
-      
     // define the Node template, representing an entity
     myDiagram.nodeTemplate =
       $(go.Node, "Auto",  // the whole node panel
@@ -121,7 +116,7 @@ function init() {
           new go.Binding("text", "toText"))
       );
     // create the model for the E-R diagram
-    /*var nodeDataArray = [
+    var nodeDataArray = [
       { key: "Products",
         items: [ { name: "ProductID", iskey: true, figure: "Decision", color: yellowgrad },
                  { name: "ProductName", iskey: false, figure: "Cube1", color: bluegrad },
@@ -149,91 +144,15 @@ function init() {
       { from: "Products", to: "Categories", text: "0..N", toText: "1" },
       { from: "Order Details", to: "Products", text: "0..N", toText: "1" }
     ];
-    myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);*/
-        
-    <?php
-
-        $serverName = $_SESSION['servidor']; //serverName\instanceName
-        $connectionInfo = array( "Database"=>$_SESSION['dataBase'], "UID"=>$_SESSION['usuario'], "PWD"=>$_SESSION['contraseña']);
-        
-        
-
-        $conn = sqlsrv_connect( $serverName, $connectionInfo);
-        if( $conn ) {
-        }else{
-            die( print_r( sqlsrv_errors(), true));
-        }
-        
-        $query = "select Columna.TABLE_NAME as Tabla,columna.COLUMN_NAME as Atributo,Columna.DATA_TYPE as Tipo
-	from INFORMATION_SCHEMA.TABLES Tablas inner join INFORMATION_SCHEMA.COLUMNS  Columna 
-	on Columna.TABLE_NAME = Tablas.TABLE_NAME";
-        $result = sqlsrv_query($conn,$query );
-        
-        $query2 = "SELECT OBJECT_NAME(fk.parent_object_id) AS Tabla, OBJECT_NAME (fk.referenced_object_id) AS Referencia 
-        FROM sys.foreign_keys AS fk INNER JOIN sys.foreign_key_columns AS fc 
-        ON fk.OBJECT_ID = fc.constraint_object_id";
-        $result2 = sqlsrv_query($conn,$query2 );
-         
-        
-        
-        $list = array();
-        while ($object = sqlsrv_fetch_object($result))
-        {
-           $list[]=$object;
-
-        }  
-        
-        $list2 = array();
-        while ($object2 = sqlsrv_fetch_object($result2))
-        {
-           $list2[]=$object2;
-
-        } 
-        //sqlsrv_close($conn); 
-        ?>
-    var listaConsulta = <?php echo json_encode($list);?>;
-    var nodeDataArray = [];
-   
-    var comp = listaConsulta[0].Tabla;
-    var tam = listaConsulta.length -1;
-    var i =0;
-    var j = 0;
-    while (i < tam){
-        var dicc = {key: comp, items:[]};
-        while (j < tam) {
-            if (comp !== listaConsulta[j].Tabla){
-                comp = listaConsulta[j].Tabla;
-                break;   
-            }
-        var item = { name: listaConsulta[j].Atributo,name2:listaConsulta[j].Tipo, iskey: true, figure: "Decision", color: yellowgrad };
-        dicc.items.push(item);
-        i++;
-        j++;
-        }
-        nodeDataArray.push(dicc);
-    }  
-    var listaConsulta2 = <?php echo json_encode($list2);?>;
-    var linkDataArray = [];
-    var tam2 = listaConsulta2.length ;
-    var h =0;
-
-    while (h < tam2){
-        console.log("entre");
-        var dicc2 = { from: listaConsulta2[h].Referencia, to:listaConsulta2[h].Tabla, text: "0..N", toText: "1" };
-        linkDataArray.push(dicc2);
-        h+=1;
-    }  
     myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
-    console.log(linkDataArray);
-    
-}
+  }
 </script>
 </head>
 <body onload="init()">
 <div id="sample">
-  <h3>Modelo Relacional</h3>
+  <h3>GoJS Entity Relationship</h3>
   <div id="myDiagramDiv" style="background-color: gray; border: solid 1px black; width: 100%; height: 700px"></div>
- 
+  
 </div>
 </body>
 </html>

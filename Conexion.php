@@ -29,9 +29,6 @@ else{
     include('index.php');
     echo "Conexión no se pudo establecer.<br />";
     die( print_r( sqlsrv_errors(), true));
-<<<<<<< HEAD
-}}
-?>;
-=======
 }
->>>>>>> origin/master
+?>;
+
