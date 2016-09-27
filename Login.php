@@ -2,6 +2,7 @@
 include 'conexion.php';
 
 $v1 = $_POST['servidor'];
+echo "fdgyhrfe $v1";
 $v2 = $_POST['dataBase'];
 $v3 = $_POST['usuario'];
 $v4 = $_POST['contraseña'];
