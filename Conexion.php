@@ -17,23 +17,22 @@ $_SESSION['usuario']=$usuario;
 $contraseña =  $_GET['contraseña'];
 $_SESSION['contraseña']=$contraseña;
 
-$connectionInfo = array( "Database"=>$dataBase, "UID"=>$usuario, "PWD"=>$contraseña);
-$conn = sqlsrv_connect( $servidor,$connectionInfo);
-
-
-
-if( $conn ) {
-    //llama a la pagina principal
-    include('principal.php');
+if(($servidor == "")or($dataBase == "")or($usuario == "")or($contraseña == "")){
+    include 'index.php';
 }
-else{
-    include('index.php');
-    echo "Conexión no se pudo establecer.<br />";
-    die( print_r( sqlsrv_errors(), true));
-<<<<<<< HEAD
-}
-?>;
+ else {
+    $connectionInfo = array( "Database"=>$dataBase, "UID"=>$usuario, "PWD"=>$contraseña);
+    $conn = sqlsrv_connect( $servidor,$connectionInfo);
 
-=======
+
+
+    if( $conn ) {
+        //llama a la pagina principal
+        include('principal.php');
+    }
+    else{
+        include('index.php');
+        echo "Conexión no se pudo establecer.<br />";
+        die( print_r( sqlsrv_errors(), true));
+    }
 }
->>>>>>> origin/master

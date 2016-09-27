@@ -19,13 +19,13 @@ and open the template in the editor.
         </header>
         <nav class="principalnav"> 
             <ul>
-                <button type = "button"><a href="M_Relacional.php"> Modelo Relacional </a></button>
+                <a href="M_Relacional.php"><button type = "button"> Modelo Relacional </button></a>
             </ul>
             <ul>
-            <button type = "button"><a href=""> Graficos </a></button>
+                <a href="Graficos.php"><button type = "button"> Graficos </button></a>
             </ul>
             <ul>
-            <button type = "button"><a href=""> Atras </a></button>
+                <a href="index.php"><button type = "button"> Salir </button></a>
             </ul>
         </nav>
         <article class="principalart">

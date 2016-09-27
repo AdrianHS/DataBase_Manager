@@ -26,6 +26,7 @@ and open the template in the editor.
             </nav>
         </form>
         <?php
+     
            
         ?>
     </body>
