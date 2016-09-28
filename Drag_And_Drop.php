@@ -45,6 +45,20 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
+    
+    <?php
+           $sql = "<scrit> document.write(data)</script>";
+           $borrar = "selectColumna.TABLE_NAME
+                    from INFORMATION_SCHEMA.TABLE_CONSTRAINTS  Tablas inner join INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE  Columna 
+                    on Columna.CONSTRAINT_NAME=Tablas.CONSTRAINT_NAME and Tablas.CONSTRAINT_NAME = '$sql'  AND Columna.TABLE_NAME = Tablas.TABLE_NAME AND CONSTRAINT_TYPE = 'FOREIGN KEY'";
+           $resultado = sqlsrv_query($conn,"alter table telefonos 
+                            drop constraint $sql;");
+           
+           $resultado2 = sqlsrv_query($conn,"alter table telefonos 
+	drop column $sql;");   
+    ?>
+    
+
 }
 </script>
 </head>
