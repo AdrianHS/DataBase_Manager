@@ -21,8 +21,9 @@ and open the template in the editor.
             <div id="navegador1">
                 <ul>
                     <li><a href="M_Relacional.php">Modelo Relacional</a></li>
-                <li><a href="Graficos.php">Graficos</a></li>
-                <li><a href="index.php">Salir</a></li>
+                    <li><a href="crearTablas.php">Crear tablas</a></li>
+                    <li><a href="Graficos.php">Graficos</a></li>
+                    <li><a href="index.php">Salir</a></li>
                 </ul>
             </div>
             

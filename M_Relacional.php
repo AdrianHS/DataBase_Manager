@@ -126,16 +126,7 @@ function init() {
         
         
         
-        $query4 = 
-        "select Columna.TABLE_NAME as nombreTabla,columna.COLUMN_NAME as llaveForanea
-	from	
-		INFORMATION_SCHEMA.TABLE_CONSTRAINTS  Tablas inner join
-		INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE  Columna 
-			on
-				Columna.CONSTRAINT_NAME=Tablas.CONSTRAINT_NAME
-				AND Columna.TABLE_NAME = Tablas.TABLE_NAME
-				AND CONSTRAINT_TYPE = 'FOREIGN KEY'";
-        $result4 = sqlsrv_query($conn,$query4);
+
         
         $list = array();
         while ($object = sqlsrv_fetch_object($result))
@@ -156,24 +147,17 @@ function init() {
         {
            $list3[]=$object3;
         } 
-        
-        $list4 = array();
-        while ($object4 = sqlsrv_fetch_object($result4))
-        {
-           $list4[]=$object4;
-        } 
+
         //sqlsrv_close($conn); 
     ?>
                 
     var listaConsulta = <?php echo json_encode($list);?>;
     var listaPrimary = <?php echo json_encode($list3);?>;
-    var listaForeing = <?php echo json_encode($list4);?>;
     var nodeDataArray = [];
    
     var comp = listaConsulta[0].Tabla;
     var tam = listaConsulta.length;
     var tam3 = listaPrimary.length;
-    var tam4 = listaForeing.length;
     var i =0;
     var j = 0;
     
@@ -196,19 +180,8 @@ function init() {
                 }
                 k++;
             }
-            
-            while(l<tam4){
-                if(listaForeing[l].llaveForanea===listaConsulta[j].Atributo && listaForeing[l].nombreTabla===listaConsulta[j].Tabla){
-                    var item = { name: listaConsulta[j].Atributo,type:listaConsulta[j].Tipo, iskey: true, figure: "TriangleUp", color: redgrad, precision:listaConsulta[j].pre };
-                    dicc.items.push(item);
-                    l = tam4+1;
-                }
-                l++;
-            }
-            
-            
-            
-            if (k!==tam3+2 && l!==tam4+2){
+                     
+            if (k!==tam3+2){
                 var item = { name: listaConsulta[j].Atributo,type:listaConsulta[j].Tipo, iskey: false, figure: "MagneticData", color: bluegrad, precision:listaConsulta[j].pre };
                 dicc.items.push(item);
             }
