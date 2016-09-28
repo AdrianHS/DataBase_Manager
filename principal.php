@@ -23,6 +23,7 @@ and open the template in the editor.
                     <li><a href="M_Relacional.php">Modelo Relacional</a></li>
                     <li><a href="crearTablas.php">Crear tablas</a></li>
                     <li><a href="Graficos.php">Graficos</a></li>
+                    <li><a href="Drag_And_Drop.php">Drag and Drop</a></li>
                     <li><a href="index.php">Salir</a></li>
                 </ul>
             </div>
