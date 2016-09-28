@@ -4,13 +4,14 @@
 <link type="text/css" rel="stylesheet" href="css/style.css">
 <script type="text/javascript">
     <?php
-    $serverName = "."; //serverName\instanceName
-            $connectionInfo = array( "Database"=>"redTEC", "UID"=>"sa", "PWD"=>"vacaslocas1");
-            $conn = sqlsrv_connect( $serverName, $connectionInfo);
-            if( $conn ) {
-            }else{
-                die( print_r( sqlsrv_errors(), true));
-            } 
+    session_start();
+    $serverName = $_SESSION['servidor']; //serverName\instanceName
+        $connectionInfo = array( "Database"=>$_SESSION['dataBase'], "UID"=>$_SESSION['usuario'], "PWD"=>$_SESSION['contraseña']);
+        $conn = sqlsrv_connect( $serverName, $connectionInfo);
+        if( $conn ) {
+        }else{
+            die( print_r( sqlsrv_errors(), true));
+        }
     $consulta = sqlsrv_query($conn, "select  name, size as 'Tamano', usedspace as 'EspacioUsado', (size - usedspace) as 
 'EspacioDisponible' from (SELECT db_name(s.database_id) as BDName, s.name AS [Name], s.physical_name AS [FileName],
  (s.size * CONVERT(float,8))/1024 AS [Size], (CAST(CASE s.type WHEN 2 THEN 0 ELSE CAST(FILEPROPERTY(s.name, 'SpaceUsed')
