@@ -8,20 +8,15 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Crear Tablas</title>
+        <link type="text/css" rel="stylesheet" href="css/style.css">
 
     </head>
     
     
 <script type="text/javascript">
+    var codigo2="";
      <?php
-        session_start();
-        $serverName = $_SESSION['servidor']; //serverName\instanceName
-            $connectionInfo = array( "Database"=>$_SESSION['dataBase'], "UID"=>$_SESSION['usuario'], "PWD"=>$_SESSION['contraseña']);
-            $conn = sqlsrv_connect( $serverName, $connectionInfo);
-            if( $conn ) {
-            }else{
-                die( print_r( sqlsrv_errors(), true));
-            }  
+        session_start();  
     ?>
     
 function createTable()
@@ -94,59 +89,56 @@ function recoger(){
     {
         for( var j=0; j<num_cols;j++)
         {
-            if(j==0){
+            if(j===0){
                 var dato = document.getElementById(''+i + '.' + j +'').value;
                 codigo+=dato+" ";
             }
-            if(j==1){
+            if(j===1){
                 var dato = document.getElementById(''+i + '.' + j +'').value;
                 codigo+=dato+" ";
             } 
-            if(j==2){
-                var dato = document.getElementById(''+i + '.' + j +'').value
+            if(j===2){
+                var dato = document.getElementById(''+i + '.' + j +'').value;
                 codigo+="("+dato+") ";
             } 
-            if(j==3){
+            if(j===3){
                 var dato = document.getElementById(''+i + '.' + j +'').value;
                 codigo+=dato+" ";  
             }
-            if(j==4){
+            if(j===4){
                 var dato = document.getElementById(''+i + '.' + j +'').value;
                 codigo+=dato+", \n\ ";   
             }
         }
     }
-    console.log(codigo);
     codigo+=")";
+    console.log(codigo);  
     codigo2=codigo;
-    
-
-    
-    
-    
-    
+    <?php   
+        $serverName = $_SESSION['servidor']; //serverName\instanceName
+        $connectionInfo = array( "Database"=>$_SESSION['dataBase'], "UID"=>$_SESSION['usuario'], "PWD"=>$_SESSION['contraseña']);
+        $conn = sqlsrv_connect( $serverName, $connectionInfo);
+        if( $conn ) {
+        }else{
+            die( print_r( sqlsrv_errors(), true));
+        }
+        $sql = "<scrit> document.write(codigo)</script>";
+        $resultado = sqlsrv_query($conn,$sql);     
+    ?>
+   
 }
-
-
 </script>
 
 </head>
 
-<body
-    <?php     
-        $sql = "Create table Personas2
-        (
-            idPersona		int identity (1,1) primary key,
-            Nombre			varchar (100) not null,
-            Apellido1		varchar (100) not null,
-            Apellido2		varchar (100) not null,
-            FechaNacimiento	datetime default GETDATE()
-        );";
- 
-        $resultado = sqlsrv_query($conn,$sql);  
-        
-        echo "$resultado";
-    ?>
+<body>
+
+    <div id="navegador">
+    <ul>
+    <li><a href="">Crear Tablas</a></li>
+    <li><a href="principal.php">Atras</a></li>
+    </ul>
+</div>
     <form name="tablegen">
         <label>Nombre de la tabla: <input type="text" name="tabla" id="tabla"/></label><br 
         <label>Esquema: <input type="text" name="esquema" id="esquema"/></label><br />
