@@ -94,9 +94,6 @@ function init() {
 
         $serverName = $_SESSION['servidor']; //serverName\instanceName
         $connectionInfo = array( "Database"=>$_SESSION['dataBase'], "UID"=>$_SESSION['usuario'], "PWD"=>$_SESSION['contraseña']);
-        
-        
-
         $conn = sqlsrv_connect( $serverName, $connectionInfo);
         if( $conn ) {
         }else{

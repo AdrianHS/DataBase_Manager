@@ -76,7 +76,8 @@ body{
     color: rgba(255, 255, 220, 1);
     border-radius: 10px;
     float: left;
-}   
+} 
+
 
 #navegador {
   background: rgba(255, 255, 255, 0.6);
@@ -135,4 +136,11 @@ body{
 
 #navegador1 li a:hover{
    background: #7C6363;
+}
+
+.liG{
+    margin-right: 20px;
+    text-align: center;
+    padding-top: 20px;
+
 }

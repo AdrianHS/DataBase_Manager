@@ -1,22 +1,16 @@
-<!DOCTYPE HTML>
-
 <html>
 <head>
 <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <link type="text/css" rel="stylesheet" href="css/style.css">
-
-<script>
-     
+<script type="text/javascript">
     <?php
-    session_start();
-    $serverName = $_SESSION['servidor']; //serverName\instanceName
-    $connectionInfo = array( "Database"=>$_SESSION['dataBase'], "UID"=>$_SESSION['usuario'], "PWD"=>$_SESSION['contraseña']);
-    $conn = sqlsrv_connect( $serverName, $connectionInfo);
-    
-    if( $conn ) {
-    }else{
-        die( print_r( sqlsrv_errors(), true));
-    } 
+    $serverName = "."; //serverName\instanceName
+            $connectionInfo = array( "Database"=>"redTEC", "UID"=>"sa", "PWD"=>"vacaslocas1");
+            $conn = sqlsrv_connect( $serverName, $connectionInfo);
+            if( $conn ) {
+            }else{
+                die( print_r( sqlsrv_errors(), true));
+            } 
     $consulta = sqlsrv_query($conn, "select  name, size as 'Tamano', usedspace as 'EspacioUsado', (size - usedspace) as 
 'EspacioDisponible' from (SELECT db_name(s.database_id) as BDName, s.name AS [Name], s.physical_name AS [FileName],
  (s.size * CONVERT(float,8))/1024 AS [Size], (CAST(CASE s.type WHEN 2 THEN 0 ELSE CAST(FILEPROPERTY(s.name, 'SpaceUsed')
@@ -28,20 +22,26 @@
            $list[]=$objeto;
     }   
     ?>
-
     var listaConsulta = <?php echo json_encode($list);?>;
-   
+ function start(){
+    var botones = '';
     
-    
-function grafica () {
-        
-   
+    for (i in listaConsulta){
+        var name = listaConsulta[i].name;
+        botones += '<li class = "liG" onclick="graficaArvhivo('+i+')">'+name+'</li>'
+    }
+    botones += '<li><a href="principal.php">Atras</a></li>'   
+    document.getElementById('boton').innerHTML = botones; 
+ }
+function graficaArvhivo (num){
 
+    
+	
             var chart = new CanvasJS.Chart("chartContainer", {
                     theme: "theme2",//theme1
                     title:{
                         
-                            text: listaConsulta[0].name           
+                            text: listaConsulta[num].name           
                     },
                     animationEnabled: false,   // change to true
                     data: [              
@@ -49,9 +49,9 @@ function grafica () {
                             // Change type to "bar", "area", "spline", "pie",etc.
                             type: "column",
                             dataPoints: [
-                                    { label:"Tamaño",  y: listaConsulta[0].Tamano },
-                                    { label: "Espacio Usado", y: listaConsulta[0].EspacioUsado },
-                                    { label: "Espacio Disponible", y: listaConsulta[0].EspacioDisponible  }
+                                    { label:"Tamaño",  y: listaConsulta[num].Tamano },
+                                    { label: "Espacio Usado", y: listaConsulta[num].EspacioUsado },
+                                    { label: "Espacio Disponible", y: listaConsulta[num].EspacioDisponible  }
 
 
                             ]
@@ -59,14 +59,23 @@ function grafica () {
                     ]
             });
             chart.render();
-    };
+
+};
+
+
 
 
 </script>
 </head>
-<body>
+<body onload="start()">
 
-<div id="chartContainer" style=" height: 300px; width: 40%;" ></div>
-
+<div id="chartContainer" style="background-color: rgba(0, 255, 255, 0.3);height: 300px; width: 70%; "></div>
+  <div id="navegador">
+    <ul id="boton">
+        
+    
+    </ul>
+</div>
 </body>
+   
 </html>
