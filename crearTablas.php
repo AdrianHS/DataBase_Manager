@@ -13,6 +13,17 @@ and open the template in the editor.
     
     
 <script type="text/javascript">
+     <?php
+        session_start();
+        $serverName = $_SESSION['servidor']; //serverName\instanceName
+            $connectionInfo = array( "Database"=>$_SESSION['dataBase'], "UID"=>$_SESSION['usuario'], "PWD"=>$_SESSION['contraseña']);
+            $conn = sqlsrv_connect( $serverName, $connectionInfo);
+            if( $conn ) {
+            }else{
+                die( print_r( sqlsrv_errors(), true));
+            }  
+    ?>
+    
 function createTable()
 { 
     var num_rows = document.getElementById('rows').value;
@@ -74,48 +85,71 @@ function createTable()
     document.getElementById('wrapper').innerHTML = theader + tbody + tfooter;
 }
 
+
 function recoger(){
     var num_rows = document.getElementById('rows').value;
     var num_cols = 5;
-    var lista=[];
+    var codigo="Create table "+document.getElementById('esquema').value+"."+document.getElementById('tabla').value+" ( \n\ ";
     for( var i=0; i<num_rows;i++)
     {
-        var dic={nombre:'',tipo:'',tamano:'',primary:'',nulidad:''};
         for( var j=0; j<num_cols;j++)
         {
             if(j==0){
                 var dato = document.getElementById(''+i + '.' + j +'').value;
-                dic.nombre=dato;
+                codigo+=dato+" ";
             }
             if(j==1){
                 var dato = document.getElementById(''+i + '.' + j +'').value;
-                dic.tipo=dato;
+                codigo+=dato+" ";
             } 
             if(j==2){
-                var dato = document.getElementById(''+i + '.' + j +'').value;
-                dic.tamano=dato;
+                var dato = document.getElementById(''+i + '.' + j +'').value
+                codigo+="("+dato+") ";
             } 
             if(j==3){
                 var dato = document.getElementById(''+i + '.' + j +'').value;
-                dic.primary=dato;
+                codigo+=dato+" ";  
             }
             if(j==4){
                 var dato = document.getElementById(''+i + '.' + j +'').value;
-                dic.nulidad=dato;
+                codigo+=dato+", \n\ ";   
             }
         }
-        lista.push(dic);
-        console.log(dic);
     }
+    console.log(codigo);
+    codigo+=")";
+    codigo2=codigo;
+    
+
+    
+    
+    
+    
 }
 
 
 </script>
+
 </head>
 
-<body>
+<body
+    <?php     
+        $sql = "Create table Personas2
+        (
+            idPersona		int identity (1,1) primary key,
+            Nombre			varchar (100) not null,
+            Apellido1		varchar (100) not null,
+            Apellido2		varchar (100) not null,
+            FechaNacimiento	datetime default GETDATE()
+        );";
+ 
+        $resultado = sqlsrv_query($conn,$sql);  
+        
+        echo "$resultado";
+    ?>
     <form name="tablegen">
-        <label>Nombre de la tabla: <input type="text" name="tabla" id="tabla"/></label><br />
+        <label>Nombre de la tabla: <input type="text" name="tabla" id="tabla"/></label><br 
+        <label>Esquema: <input type="text" name="esquema" id="esquema"/></label><br />
         <label>Cantidad de columnas: <input type="text" name="rows" id="rows"/></label><br />
         <input name="generate" type="button" value="Crear Grilla" onclick='createTable();'/>
     </form>
