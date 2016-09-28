@@ -30,6 +30,7 @@ and open the template in the editor.
             
         </nav>
         <article class="principalart">
+            <div></div>
             
         </article>
             

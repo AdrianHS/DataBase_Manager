@@ -70,13 +70,14 @@ function graficaArvhivo (num){
 </head>
 <body onload="start()">
 
-<div id="chartContainer" style="background-color: rgba(0, 255, 255, 0.3);height: 300px; width: 70%; "></div>
+
   <div id="navegador">
     <ul id="boton">
         
     
     </ul>
 </div>
+    <div id="chartContainer"></div>
 </body>
    
 </html>
