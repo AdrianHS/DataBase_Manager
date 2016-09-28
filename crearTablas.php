@@ -139,14 +139,15 @@ function recoger(){
     <li><a href="principal.php">Atras</a></li>
     </ul>
 </div>
-    <form name="tablegen">
+    <form name="tablegen" class="crearTablas1">
         <label>Nombre de la tabla: <input type="text" name="tabla" id="tabla"/></label><br 
         <label>Esquema: <input type="text" name="esquema" id="esquema"/></label><br />
         <label>Cantidad de columnas: <input type="text" name="rows" id="rows"/></label><br />
         <input name="generate" type="button" value="Crear Grilla" onclick='createTable();'/>
+        <input name="rec" type="button" value="Crear Tabla" onclick='recoger();'/>
     </form>
-    <div id="wrapper"></div>
-    <input name="rec" type="button" value="Crear Tabla" onclick='recoger();'/>
+    <div id="wrapper"style="margin-left: 350px; padding-top: 20px;"></div>
+    
             <?php
             // put your code here
             ?>
